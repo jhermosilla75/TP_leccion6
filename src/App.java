@@ -1,14 +1,22 @@
 public class App {
     public static void main(String[] args) throws Exception {
-     
-    
+        SistemaJuego sistemaJuego = new SistemaJuego();
 
-    int puntos1 = (int) (Math.random() * 6);
-    int puntos2 = (int) (Math.random() * 6);
+        Thread hiloSistema = new Thread(sistemaJuego);
+        hiloSistema.start();
 
-    System.out.println("Puntos del jugador 1: " + puntos1);
-    System.out.println("Puntos del jugador 2: " + puntos2);
+        int cantidadJugadores = 10;
+        GeneradorJugador generador = new GeneradorJugador(sistemaJuego, cantidadJugadores);
 
+        Thread hiloGenerador = new Thread(generador);
+        hiloGenerador.start();
+
+        try {
+            hiloSistema.join();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
+        System.out.println("Fin del programa.");
     }
-
 }
