@@ -1,7 +1,7 @@
 ﻿public class Jugador {
-    private final int id;
-    private final int ranking;
-    private final long tiempoEspera;
+    private int id;
+    private int ranking;
+    private long tiempoEspera;
 
     public Jugador(int id, int ranking) {
         this.id = id;
