@@ -18,5 +18,8 @@ public class App {
         }
 
         System.out.println("Fin del programa.");
+
+        System.out.println("Fin del programa.");
+
     }
 }
