@@ -16,7 +16,7 @@
                 Thread.currentThread().interrupt();
             }
 
-            int ranking = 1000 + (int) (Math.random() * 24001);
+            int ranking = 1000 + (int) (Math.random() * 2300);
             Jugador jugador = new Jugador(i+1, ranking);
             sistemaJuego.agregarJugador(jugador);
             System.out.println("El Jugador " + jugador.getId() + " (Con el ranking: " + jugador.getRanking() + ") se unió a la cola de espera.");
