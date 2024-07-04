@@ -16,7 +16,6 @@ public class SistemaJuego implements Runnable {
             jugadoresEspera.add(jugador);
         }
     }
-
     
     public void revisarEstadoSistema() {
         if (!generandoJugadores && jugadoresEspera.isEmpty() && partidasActivas == 0) {
@@ -72,7 +71,6 @@ public class SistemaJuego implements Runnable {
                         hilosPartidas.add(hiloPartida);
                         hiloPartida.start();
                         
-                        
                     } else
                         try {
                             Thread.sleep(100);
@@ -85,7 +83,7 @@ public class SistemaJuego implements Runnable {
             revisarEstadoSistema();
         
         }
-        // Esperar a que todos los hilos de las partidas terminen
+        
         for (Thread hiloPartida : hilosPartidas) {
             try {
                 hiloPartida.join();
