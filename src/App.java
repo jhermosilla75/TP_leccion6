@@ -5,21 +5,22 @@ public class App {
         Thread hiloSistema = new Thread(sistemaJuego);
         hiloSistema.start();
 
-        int cantidadJugadores = 10;
-        GeneradorJugador generador = new GeneradorJugador(sistemaJuego, cantidadJugadores);
+        int cantidadJugadores = 2;
+        GeneradorJugador creaJugador = new GeneradorJugador(sistemaJuego, cantidadJugadores);
 
-        Thread hiloGenerador = new Thread(generador);
-        hiloGenerador.start();
+        Thread hiloGeneraJugadores = new Thread(creaJugador);
+        hiloGeneraJugadores.start();
 
         try {
+            hiloGeneraJugadores.join();
             hiloSistema.join();
+            
+            
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
 
-        System.out.println("Fin del programa.");
-
-        System.out.println("Fin del programa.");
+    System.out.println("Fin del programa.");
 
     }
 }

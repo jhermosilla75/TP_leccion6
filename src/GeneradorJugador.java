@@ -17,12 +17,12 @@
             }
 
             int ranking = 1000 + (int) (Math.random() * 23001);
-            Jugador jugador = new Jugador(i, ranking);
+            Jugador jugador = new Jugador(i+1, ranking);
             sistemaJuego.agregarJugador(jugador);
             System.out.println("El Jugador " + jugador.getId() + " (Con el ranking: " + jugador.getRanking() + ") se unió a la cola de espera.");
         }
 
         sistemaJuego.setGenerandoJugadores(false);
-        System.out.println("Se terminaron de generar los jugadores indicados.");
+        System.out.println("Se terminó de generar " + jugadoresTotales + " jugadoress.");
     }
 }

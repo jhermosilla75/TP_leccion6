@@ -14,7 +14,7 @@
         sistemaJuego.aumentarPartidasActivas();
         System.out.println("Partida iniciada entre Jugador " + jugador1.getId() + " y Jugador " + jugador2.getId());
         try {
-            Thread.sleep(3000); // Simula la duración de la partida
+            Thread.sleep(300); 
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
@@ -24,9 +24,9 @@
         
         String resultado;
         if (puntos1 > puntos2) {
-            resultado =  jugador1.getId() + " ganó";
+            resultado =  "Jugador "+ jugador1.getId() + " ganó la partida con "+ puntos1 +" puntos";
         } else if (puntos1 < puntos2) {
-            resultado =  jugador2.getId() + " ganó";
+            resultado =  "Jugador "+ jugador2.getId() + " ganó la partida con "+ puntos2 +" puntos";
         } else {
             resultado = "Los jugadores empataron";
         }

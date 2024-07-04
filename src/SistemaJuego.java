@@ -16,6 +16,14 @@ public class SistemaJuego implements Runnable {
         }
     }
 
+    public void revisarEstadoSistema() {
+        synchronized (monitor) {
+            if (!generandoJugadores && jugadoresEspera.isEmpty() && partidasActivas == 0) {
+                sistemaEnEjecucion = false;
+            }
+        }
+    }
+
     public void setGenerandoJugadores(boolean generandoJugadores) {
         synchronized (monitor) {
             this.generandoJugadores = generandoJugadores;
@@ -24,14 +32,14 @@ public class SistemaJuego implements Runnable {
 
     public void aumentarPartidasActivas() {
         synchronized (monitor) {
-            partidasActivas++;
+            partidasActivas = partidasActivas + 1;
             System.out.println("Partidas activas: " + partidasActivas);
         }
     }
 
     public void disminuirPartidasActivas() {
         synchronized (monitor) {
-            partidasActivas--;
+            partidasActivas = partidasActivas - 1;
             System.out.println("Partidas activas: " + partidasActivas);
         }
     }
@@ -51,13 +59,7 @@ public class SistemaJuego implements Runnable {
         return null;
     }
 
-    public void revisarEstadoSistema() {
-        synchronized (monitor) {
-            if (!generandoJugadores && jugadoresEspera.isEmpty() && partidasActivas == 0) {
-                sistemaEnEjecucion = false;
-            }
-        }
-    }
+    
 
     @Override
     public void run() {
