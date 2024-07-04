@@ -11,16 +11,17 @@ public class App {
         Thread hiloGeneraJugadores = new Thread(creaJugador);
         hiloGeneraJugadores.start();
 
-        // try {
+        try {
             
-        //     hiloSistema.join();
+            hiloSistema.join();
             
             
-        // } catch (InterruptedException e) {
-        //     Thread.currentThread().interrupt();
-        // }
-        hiloSistema.join();
-        hiloGeneraJugadores.join();
+            
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    
+        
 
         System.out.println("Fin del programa.");
 

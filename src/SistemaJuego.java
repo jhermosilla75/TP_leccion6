@@ -3,6 +3,7 @@ import java.util.List;
 
 public class SistemaJuego implements Runnable {
     private List<Jugador> jugadoresEspera = new ArrayList<>();
+    private List<Thread> hilosPartidas = new ArrayList<>();
     private int partidasActivas = 0;
     private int rango_inicial = 500;
     private int aumento_por_segundo = 100;
@@ -18,17 +19,13 @@ public class SistemaJuego implements Runnable {
 
     
     public void revisarEstadoSistema() {
-        //synchronized (monitor) {
-            if (!generandoJugadores && jugadoresEspera.isEmpty() && partidasActivas == 0) {
+        if (!generandoJugadores && jugadoresEspera.isEmpty() && partidasActivas == 0) {
                 sistemaEnEjecucion = false;
-            }
-        //}
+        }
     }
 
     public void setGenerandoJugadores(boolean generandoJugadores) {
-        //synchronized (monitor) {
-            this.generandoJugadores = generandoJugadores;
-        //}
+         this.generandoJugadores = generandoJugadores;
     }
 
     public void AumentarPartidasActivas() {
@@ -56,8 +53,6 @@ public class SistemaJuego implements Runnable {
         return null;
     }
 
-    
-
     @Override
     public void run() {
         while (sistemaEnEjecucion) {
@@ -73,7 +68,11 @@ public class SistemaJuego implements Runnable {
                         jugadoresEspera.remove(jugador2);
                     
                         Partida partida = new Partida(jugador1, jugador2, this);
-                        new Thread(partida).start();
+                        Thread hiloPartida = new Thread(partida);
+                        hilosPartidas.add(hiloPartida);
+                        hiloPartida.start();
+                        
+                        
                     } else
                         try {
                             Thread.sleep(100);
@@ -82,8 +81,17 @@ public class SistemaJuego implements Runnable {
                     }
                  }
             }
+            
             revisarEstadoSistema();
         
+        }
+        // Esperar a que todos los hilos de las partidas terminen
+        for (Thread hiloPartida : hilosPartidas) {
+            try {
+                hiloPartida.join();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
 
         System.out.println("El sistema dejó de generar partidas");
