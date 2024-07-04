@@ -12,7 +12,7 @@ public class App {
         hiloGeneraJugadores.start();
 
         try {
-            hiloGeneraJugadores.join();
+            
             hiloSistema.join();
             
             

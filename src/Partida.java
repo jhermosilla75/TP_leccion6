@@ -11,10 +11,10 @@
 
     @Override
     public void run() {
-        sistemaJuego.aumentarPartidasActivas();
-        System.out.println("Partida iniciada entre Jugador " + jugador1.getId() + " y Jugador " + jugador2.getId());
+        sistemaJuego.AumentarPartidasActivas();
+        System.out.println("Partida iniciada entre Jugador " + jugador1.getId() + " vs Jugador " + jugador2.getId());
         try {
-            Thread.sleep(300); 
+            Thread.sleep(3000); 
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
@@ -28,10 +28,10 @@
         } else if (puntos1 < puntos2) {
             resultado =  "Jugador "+ jugador2.getId() + " ganó la partida con "+ puntos2 +" puntos";
         } else {
-            resultado = "Los jugadores empataron";
+            resultado = "La partida fue empate";
         }
         
         System.out.println("Resultado de la partida: Jugador " + jugador1.getId() + " (" + puntos1 + " puntos) vs Jugador " + jugador2.getId() + " (" + puntos2 + " puntos) - " + resultado);
-        sistemaJuego.disminuirPartidasActivas();
+        sistemaJuego.DisminuirPartidasActivas();
     }
 }

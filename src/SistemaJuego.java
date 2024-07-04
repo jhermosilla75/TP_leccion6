@@ -17,27 +17,27 @@ public class SistemaJuego implements Runnable {
     }
 
     public void revisarEstadoSistema() {
-        synchronized (monitor) {
+        //synchronized (monitor) {
             if (!generandoJugadores && jugadoresEspera.isEmpty() && partidasActivas == 0) {
                 sistemaEnEjecucion = false;
             }
-        }
+        //}
     }
 
     public void setGenerandoJugadores(boolean generandoJugadores) {
-        synchronized (monitor) {
+        //synchronized (monitor) {
             this.generandoJugadores = generandoJugadores;
-        }
+        //}
     }
 
-    public void aumentarPartidasActivas() {
+    public void AumentarPartidasActivas() {
         synchronized (monitor) {
             partidasActivas = partidasActivas + 1;
             System.out.println("Partidas activas: " + partidasActivas);
         }
     }
 
-    public void disminuirPartidasActivas() {
+    public void DisminuirPartidasActivas() {
         synchronized (monitor) {
             partidasActivas = partidasActivas - 1;
             System.out.println("Partidas activas: " + partidasActivas);
@@ -89,10 +89,10 @@ public class SistemaJuego implements Runnable {
                     Thread.currentThread().interrupt();
                 }
             }
-
+            
             revisarEstadoSistema();
         }
 
-        System.out.println("El sistema del juego se detuvo.");
+        System.out.println("Finalizó el sistema del juego");
     }
 }
